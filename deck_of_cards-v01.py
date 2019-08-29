@@ -2,7 +2,6 @@
 # """ Let's play cards! """
 
 import requests
-from pprint import pprint 
 
 #numplayers = raw_input("\nHow many players will there be: ") # Prompt user and set variable for number of players
 numplayers = 2 # Lazy mode 
@@ -13,13 +12,17 @@ numdecks = 5 # Lazy mode
 #numcards = raw_input("\nHow many cards would you like to draw: ") # Prompt user and set variable for number of cards to draw
 numcards = 5 # Lazy mode 
 
+# set the total number of cards based on number of decks
 totalcards = int(numdecks) * 52
 
+# initialize dictionary to hold players and their cards
 game = {}
 
+# initialize player number variable
 pnum = 0
 
-def new_deck(numdecks): # function to create a new deck and return the deck_id
+# function to create a new deck and return the deck_id
+def new_deck(numdecks): 
     url = "https://deckofcardsapi.com/api/deck/new/shuffle/" # URL to generat a new deck
 
     querystring = {"deck_count":numdecks} # added numdecks variable
