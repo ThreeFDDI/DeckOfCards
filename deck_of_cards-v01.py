@@ -1,5 +1,9 @@
 #!/usr/local/bin/python3
-# """ Let's play cards! """
+""" 
+Let's play cards! 
+
+Example script using deckofcardsapi.com
+"""
 
 import requests
 
@@ -62,11 +66,11 @@ def draw_cards(numcards, deck_id, pnum):
 def play_game():
     # Prompt user and set variable for number of players
     # numplayers = raw_input("\nHow many players will there be: ")
-    numplayers = 2  # Lazy mode
+    numplayers = 3  # Lazy mode
 
     # Prompt user and set variable for number of decks to shuffle
     # numdecks = raw_input("\nHow many decks would you like to shuffle: ")
-    numdecks = 5  # Lazy mode
+    numdecks = 1  # Lazy mode
 
     # Prompt user and set variable for number of cards to draw
     # numcards = raw_input("\nHow many cards would you like to draw: ")
