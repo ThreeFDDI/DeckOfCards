@@ -9,7 +9,9 @@ import requests
 from pprint import pprint
 
 
-# TODO Shuffle deck
+# TODO (Done) Start new game
+
+# TODO (Done) Reshuffle
 
 # TODO The Deal
 
@@ -20,8 +22,6 @@ from pprint import pprint
 # TODO NPC turn
 
 # TODO Player turn
-
-# TODO Reshuffle
 
 
 def new_game():
@@ -95,6 +95,18 @@ def draw_cards(numcards, deck_id, pnum):
     return pnumcards
 
 
+def shuffle_deck(deck_id):
+    """
+    Function to reshuffle an existing deck
+    """
+    print(f"Reshuffling deck id: {deck_id}\n")
+    # URL to shuffle existing deck
+    url = f"https://deckofcardsapi.com/api/deck/{deck_id}/shuffle/"
+
+    # send GET request
+    requests.request("GET", url)
+
+
 def play_game():
     # initialize dictionary to hold players and their cards
     game = {}
@@ -104,7 +116,15 @@ def play_game():
 
 
     # shuffle a new deck of cards
-    deck_id = new_game()
+    deck_id, numplayers = new_game()
+
+    numcards = 5 
+
+    game[1] = draw_cards(numcards, deck_id, pnum)
+
+    shuffle_deck(deck_id)
+
+    game[1] = draw_cards(numcards, deck_id, pnum)
 
 #    # draw cards for each player
 #    for i in range(int(numplayers)):
