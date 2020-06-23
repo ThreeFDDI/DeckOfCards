@@ -52,18 +52,18 @@ def draw_cards(numcards, deck_id, pnum):
     draw = requests.request("GET", url, params=querystring).json()
 
     # print the number and suit of each card drawn
-    for i in draw["cards"]:  # parse HTTP response;
+    for card in draw["cards"]:  # parse HTTP response;
         print(
             "Player #"
             + str(pnum)
             + " drew the "
-            + i["value"]
+            + card["value"]
             + " of "
-            + i["suit"]
+            + card["suit"]
             + "!"
         )
         # Add card code to list of all cards drawn
-        pnumcards.append(i["code"])
+        pnumcards.append(card["code"])
 
     # print the number of remaining cards in the deck
     print(f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n")
