@@ -11,22 +11,17 @@ import requests
 # function to create a new deck and return the deck_id
 def new_deck(numdecks):
     # URL to generat a new deck
-    url = (
-        "https://deckofcardsapi.com/api/deck/new/shuffle/"  
-    )
+    url = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
     querystring = {"deck_count": numdecks}  # added numdecks variable
 
-    response = requests.request(
-        "GET", url, params=querystring
-    )
+    response = requests.request("GET", url, params=querystring)
 
     deck = response.json()
     deck_id = deck["deck_id"]
 
-    
     # Print deck id
-    print("\nYou've shuffled a new deck! Deck id: " + deck_id + "\n")  
+    print(f"\nYou've shuffled a new deck! Deck id: {deck_id}\n")
 
     return deck_id
 
@@ -39,11 +34,9 @@ def draw_cards(numcards, deck_id, pnum):
         "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
     )  # URL to draw cards
 
-    querystring2 = {"count": numcards}  # added numcards variable
+    querystring = {"count": numcards}  # added numcards variable
 
-    draw = requests.request(
-        "GET", url2, params=querystring2
-    ).json()
+    draw = requests.request("GET", url2, params=querystring).json()
 
     # print the number and suit of each card drawn
     for i in draw["cards"]:  # parse HTTP response;
@@ -55,14 +48,12 @@ def draw_cards(numcards, deck_id, pnum):
             + " of "
             + i["suit"]
             + "!"
-        )  
+        )
         # Add card code to list of all cards drawn
-        pnumcards.append(i["code"])  
+        pnumcards.append(i["code"])
 
     # print the number of remaining cards in the deck
-    print(
-        f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n"
-    )  
+    print(f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n")
 
     return pnumcards
 
@@ -103,7 +94,7 @@ def play_game():
     )
 
     # run the new_deck function to start
-    deck_id = new_deck(numdecks)  
+    deck_id = new_deck(numdecks)
 
     for i in range(int(numplayers)):
         pnum += 1
@@ -120,4 +111,3 @@ def play_game():
 
 if __name__ == "__main__":
     play_game()
-
