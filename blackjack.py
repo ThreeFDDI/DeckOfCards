@@ -6,6 +6,7 @@ Blackjack game using deckofcardsapi.com
 """
 
 import requests
+from pprint import pprint
 
 
 # TODO Shuffle deck
@@ -66,7 +67,7 @@ def draw_cards(numcards, deck_id, pnum):
     # URL to draw cards from deck
     url = (
         "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
-    )  # URL to draw cards
+    )
 
     # parameter for number of cards
     querystring = {"count": numcards}
