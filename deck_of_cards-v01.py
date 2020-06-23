@@ -10,8 +10,9 @@ import requests
 
 # function to create a new deck and return the deck_id
 def new_deck(numdecks):
+    # URL to generat a new deck
     url = (
-        "https://deckofcardsapi.com/api/deck/new/shuffle/"  # URL to generat a new deck
+        "https://deckofcardsapi.com/api/deck/new/shuffle/"  
     )
 
     querystring = {"deck_count": numdecks}  # added numdecks variable
@@ -44,6 +45,7 @@ def draw_cards(numcards, deck_id, pnum):
         "GET", url2, params=querystring2
     ).json()
 
+    # print the number and suit of each card drawn
     for i in draw["cards"]:  # parse HTTP response;
         print(
             "Player #"
@@ -53,12 +55,14 @@ def draw_cards(numcards, deck_id, pnum):
             + " of "
             + i["suit"]
             + "!"
-        )  # print the number and suit of each card drawn
-        pnumcards.append(i["code"])  # Add card code to list of all cards drawn
+        )  
+        # Add card code to list of all cards drawn
+        pnumcards.append(i["code"])  
 
+    # print the number of remaining cards in the deck
     print(
-        "\nThere are " + str(draw["remaining"]) + " cards remaining in the deck.\n"
-    )  # print the number of remaining cards in the deck
+        f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n"
+    )  
 
     return pnumcards
 
@@ -85,7 +89,7 @@ def play_game():
     # initialize player number variable
     pnum = 0
 
-    # Repeat back the variable input by the user. If I were cool there would be a Y/N confirmation.
+    # Repeat back the variable input by the user.
     print(
         "\nPreparing to shuffle "
         + str(numdecks)
@@ -98,7 +102,8 @@ def play_game():
         + " cards each."
     )
 
-    deck_id = new_deck(numdecks)  # run the new_deck function to start
+    # run the new_deck function to start
+    deck_id = new_deck(numdecks)  
 
     for i in range(int(numplayers)):
         pnum += 1
