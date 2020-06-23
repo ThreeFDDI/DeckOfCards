@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 # """ Let's play cards! """
 
 import requests
@@ -28,10 +28,7 @@ def new_deck(numdecks):
     querystring = {"deck_count":numdecks} # added numdecks variable
 
     payload = ""
-    headers = {
-        'cache-control': "no-cache",
-        'Postman-Token': "9f6207b2-5915-4e7a-a726-6d2a2b68751f"
-        }
+    headers = {}
 
     response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
 
