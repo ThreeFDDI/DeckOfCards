@@ -13,11 +13,16 @@ def new_deck(numdecks):
     # URL to generat a new deck
     url = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
-    querystring = {"deck_count": numdecks}  # added numdecks variable
+    # parameter for number of decks
+    querystring = {"deck_count": numdecks}  
 
+    # send GET request
     response = requests.request("GET", url, params=querystring)
 
+    # parse json response
     deck = response.json()
+    
+    # extract deck ID
     deck_id = deck["deck_id"]
 
     # Print deck id
