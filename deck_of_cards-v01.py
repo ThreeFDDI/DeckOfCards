@@ -8,9 +8,11 @@ Example script using deckofcardsapi.com
 import requests
 
 
-# function to create a new deck and return the deck_id
 def new_deck(numdecks):
-    # URL to generat a new deck
+    """
+    function to create a new deck and return the deck_id
+    """
+    # URL to generate a new deck
     url = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
     # parameter for number of decks
@@ -32,16 +34,22 @@ def new_deck(numdecks):
 
 
 def draw_cards(numcards, deck_id, pnum):
-
+    """
+    function to draw cards
+    """
+    # init list of player's cards
     pnumcards = []
 
-    url2 = (
+    # URL to draw cards from deck
+    url = (
         "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
     )  # URL to draw cards
 
-    querystring = {"count": numcards}  # added numcards variable
+    # parameter for number of cards
+    querystring = {"count": numcards}
 
-    draw = requests.request("GET", url2, params=querystring).json()
+    # send GET request
+    draw = requests.request("GET", url, params=querystring).json()
 
     # print the number and suit of each card drawn
     for i in draw["cards"]:  # parse HTTP response;
@@ -98,15 +106,16 @@ def play_game():
         + " cards each."
     )
 
-    # run the new_deck function to start
+    # shuffle a new deck of cards
     deck_id = new_deck(numdecks)
 
+    # draw cards for each player
     for i in range(int(numplayers)):
         pnum += 1
         game[pnum] = draw_cards(numcards, deck_id, pnum)
 
+    # print out the cards in play for each player
     print("The following cards are in play:")
-
     for k, v in game.items():
         hand = ""
         for i in v:
