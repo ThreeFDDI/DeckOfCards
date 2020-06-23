@@ -4,15 +4,15 @@
 import requests
 
 # Prompt user and set variable for number of players
-# numplayers = raw_input("\nHow many players will there be: ") 
+# numplayers = raw_input("\nHow many players will there be: ")
 numplayers = 2  # Lazy mode
 
 # Prompt user and set variable for number of decks to shuffle
-# numdecks = raw_input("\nHow many decks would you like to shuffle: ") 
+# numdecks = raw_input("\nHow many decks would you like to shuffle: ")
 numdecks = 5  # Lazy mode
 
 # Prompt user and set variable for number of cards to draw
-# numcards = raw_input("\nHow many cards would you like to draw: ") 
+# numcards = raw_input("\nHow many cards would you like to draw: ")
 numcards = 5  # Lazy mode
 
 # set the total number of cards based on number of decks
@@ -53,7 +53,7 @@ def new_deck(numdecks):
         + " players drawing "
         + str(numcards)
         + " cards each."
-    )  
+    )
 
     print("\nYou've shuffled a new deck! Deck id: " + deck_id + "\n")  # Print deck id
 
@@ -71,10 +71,7 @@ def draw_cards(numcards, deck_id, pnum):
     querystring2 = {"count": numcards}  # added numcards variable
 
     payload2 = ""
-    headers2 = {
-        "cache-control": "no-cache",
-        "Postman-Token": "814ba960-bb73-4cbb-9e6d-263f77d820a0",
-    }
+    headers2 = {}
 
     draw = requests.request(
         "GET", url2, data=payload2, headers=headers2, params=querystring2
