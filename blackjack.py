@@ -8,23 +8,28 @@ Blackjack game using deckofcardsapi.com
 import requests
 from pprint import pprint
 
+"""
+TODO    (Done) Start new game
+        Create new deck and set number of players
 
-# TODO (Done) Start new game
+TODO    (Done) Reshuffle function
+        Reshuffle existing deck
 
-# TODO (Done) Reshuffle
+TODO    Draw card function
+        Draw a card and append it to player's hand
 
-# TODO Draw card
+TODO    The Deal
+        Deal initial hand to all players and dealer
 
-# TODO The Deal
+TODO    Betting
+        Place bets
 
-# TODO Betting
+TODO    Dealer turn
 
-# TODO Dealer turn
+TODO    NPC turn
 
-# TODO NPC turn
-
-# TODO Player turn
-
+TODO    Player turn
+"""
 
 def new_game():
     """
