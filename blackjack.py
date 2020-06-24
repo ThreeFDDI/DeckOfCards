@@ -16,7 +16,7 @@ TODO    (Done) Start new game
 TODO    (Done) Reshuffle function
         Reshuffle existing deck
 
-TODO    Draw card function
+TODO    (Done) Draw card function
         Draw a card and append it to player's hand
 
 TODO    The Deal
@@ -43,7 +43,7 @@ def new_game():
 
     print("\nLet's play some Blackjack!")
     # Prompt user and set variable for number of players
-    numplayers = 5  # Lazy mode
+    numplayers = 3  # Lazy mode
     # numplayers = input("\nHow many players will there be: ")
 
     # Prompt user and set variable for number of decks to shuffle
@@ -78,10 +78,14 @@ def new_game():
         player += 1
         bank[f"P{player}"] = 100
 
+    # set and print player number
+    player = f"P{random.randint(1, numplayers)}"
+    print(f"You are player #{player[1]}\n")
+
     # set deck lower limit before reshuffle
     deck_cut = random.randint(40, 75)
 
-    return deck_id, deck_cut, numplayers, bank
+    return deck_id, deck_cut, numplayers, player, bank
 
 
 def draw_card(deck_id):
@@ -125,7 +129,7 @@ def play_game():
     main function to play Blackjack
     """
     # shuffle a new deck of cards
-    deck_id, deck_cut, numplayers, bank = new_game()
+    deck_id, deck_cut, numplayers, player, bank = new_game()
 
     print(deck_cut)
     print(numplayers)
