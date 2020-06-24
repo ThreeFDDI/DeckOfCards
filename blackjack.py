@@ -32,6 +32,7 @@ TODO    NPC turn
 TODO    Player turn
 """
 
+
 def new_game():
     """
     Function to create a new deck and return the deck_id, 
@@ -48,12 +49,12 @@ def new_game():
     # Prompt user and set variable for number of decks to shuffle
     numdecks = 6  # Lazy mode
     # numdecks = input("\nHow many decks would you like to shuffle: ")
-    
+
     # URL to generate a new deck
     url = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
     # parameter for number of decks
-    querystring = {"deck_count": numdecks}  
+    querystring = {"deck_count": numdecks}
 
     print(f"\nShuffling cards.")
 
@@ -62,7 +63,7 @@ def new_game():
 
     # parse json response
     deck = response.json()
-    
+
     # extract deck ID
     deck_id = deck["deck_id"]
 
@@ -72,7 +73,7 @@ def new_game():
     # init bank dictionary
     bank = {}
 
-    # set starting bank for each player  
+    # set starting bank for each player
     for player in range(numplayers):
         player += 1
         bank[f"P{player}"] = 100
@@ -91,9 +92,7 @@ def draw_card(deck_id, player_num, player_hand):
     pnumcards = []
 
     # URL to draw cards from deck
-    url = (
-        "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
-    )
+    url = "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
 
     # send GET request
     draw = requests.request("GET", url).json()
@@ -134,6 +133,7 @@ def shuffle_deck(deck_id):
 
     return deck_cut
 
+
 def play_game():
     """
     main function to play Blackjack
@@ -144,6 +144,7 @@ def play_game():
     print(deck_cut)
     print(numplayers)
     print(bank)
+
 
 #    # draw cards for each player
 #    for i in range(int(numplayers)):
