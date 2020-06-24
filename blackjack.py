@@ -5,6 +5,7 @@ Let's play Blackjack!
 Blackjack game using deckofcardsapi.com
 """
 
+import random
 import requests
 from pprint import pprint
 
@@ -67,19 +68,17 @@ def new_game():
     # Print deck id
     print(f"\nNew game starting with deck id: {deck_id}\n")
 
+    # init bank dictionary
+    bank = {}
 
-    game = {}
-    
+    # set starting bank for each player  
     for player in range(numplayers):
         player += 1
-        game[f"P{player}"] = {"bank": 100}
+        bank[f"P{player}"] = 100
 
-    pprint(game)
+    pprint(bank)
 
-
-
-
-    return deck_id, numplayers
+    return deck_id, numplayers, bank
 
 
 def draw_card(deck_id, player_num, player_hand):
@@ -128,6 +127,10 @@ def shuffle_deck(deck_id):
     # send GET request
     requests.request("GET", url)
 
+    # set deck lower limit before reshuffle
+    deck_cut = random.randint(40, 75)
+
+    return deck_cut
 
 def play_game():
     # initialize dictionary to hold players and their cards
@@ -138,7 +141,7 @@ def play_game():
 
 
     # shuffle a new deck of cards
-    deck_id, numplayers = new_game()
+    deck_id, numplayers, bank = new_game()
 
     playerhand = []    
 
