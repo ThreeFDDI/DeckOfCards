@@ -68,7 +68,7 @@ def new_game():
     return deck_id, numplayers
 
 
-def draw_cards(numcards, deck_id, pnum):
+def draw_card(deck_id, player_num, player_hand):
     """
     function to draw cards
     """
@@ -80,17 +80,14 @@ def draw_cards(numcards, deck_id, pnum):
         "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
     )
 
-    # parameter for number of cards
-    querystring = {"count": numcards}
-
     # send GET request
-    draw = requests.request("GET", url, params=querystring).json()
+    draw = requests.request("GET", url).json()
 
     # print the number and suit of each card drawn
     for card in draw["cards"]:  # parse HTTP response;
         print(
             "Player #"
-            + str(pnum)
+            + str(player_num)
             + " drew the "
             + card["value"]
             + " of "
@@ -103,7 +100,7 @@ def draw_cards(numcards, deck_id, pnum):
     # print the number of remaining cards in the deck
     print(f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n")
 
-    return pnumcards
+    return player_hand
 
 
 def shuffle_deck(deck_id):
@@ -129,17 +126,16 @@ def play_game():
     # shuffle a new deck of cards
     deck_id, numplayers = new_game()
 
-    numcards = 5 
+    playerhand = []    
 
-    game[1] = draw_cards(numcards, deck_id, pnum)
+    game[1] = draw_card(deck_id, pnum, playerhand)
 
-    game[1] = draw_cards(numcards, deck_id, pnum)
+    game[1] = draw_card(deck_id, pnum, playerhand)
 
     shuffle_deck(deck_id)
 
-    numcards = 1
     
-    game[1] = draw_cards(numcards, deck_id, pnum)
+    game[1] = draw_card(deck_id, pnum, playerhand)
 
 #    # draw cards for each player
 #    for i in range(int(numplayers)):
