@@ -13,6 +13,8 @@ from pprint import pprint
 
 # TODO (Done) Reshuffle
 
+# TODO Draw card
+
 # TODO The Deal
 
 # TODO Betting
@@ -28,19 +30,23 @@ def new_game():
     """
     function to create a new deck and return the deck_id
     """
+
+    print("\nLet's play some Blackjack!")
     # Prompt user and set variable for number of players
-    # numplayers = raw_input("\nHow many players will there be: ")
     numplayers = 3  # Lazy mode
+    # numplayers = input("\nHow many players will there be: ")
 
     # Prompt user and set variable for number of decks to shuffle
-    # numdecks = raw_input("\nHow many decks would you like to shuffle: ")
     numdecks = 6  # Lazy mode
+    # numdecks = input("\nHow many decks would you like to shuffle: ")
     
     # URL to generate a new deck
     url = "https://deckofcardsapi.com/api/deck/new/shuffle/"
 
     # parameter for number of decks
     querystring = {"deck_count": numdecks}  
+
+    print(f"\nShuffling cards.")
 
     # send GET request
     response = requests.request("GET", url, params=querystring)
@@ -52,7 +58,7 @@ def new_game():
     deck_id = deck["deck_id"]
 
     # Print deck id
-    print(f"\nYou've started a new game of Blackjack!\n\nDeck id: {deck_id}\n")
+    print(f"\nNew game starting with deck id: {deck_id}\n")
 
     return deck_id, numplayers
 
@@ -122,8 +128,12 @@ def play_game():
 
     game[1] = draw_cards(numcards, deck_id, pnum)
 
+    game[1] = draw_cards(numcards, deck_id, pnum)
+
     shuffle_deck(deck_id)
 
+    numcards = 1
+    
     game[1] = draw_cards(numcards, deck_id, pnum)
 
 #    # draw cards for each player
