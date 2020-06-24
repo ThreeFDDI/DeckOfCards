@@ -36,7 +36,8 @@ def new_game():
     """
     Function to create a new deck and return the deck_id, 
     determine the number of players and the number of decks,
-    and allocate the starting bank for each player.
+    allocate the starting bank for each player,
+    and set the deck lower limit before reshuffle.
     """
 
     print("\nLet's play some Blackjack!")
@@ -76,9 +77,10 @@ def new_game():
         player += 1
         bank[f"P{player}"] = 100
 
-    pprint(bank)
+    # set deck lower limit before reshuffle
+    deck_cut = random.randint(40, 75)
 
-    return deck_id, numplayers, bank
+    return deck_id, deck_cut, numplayers, bank
 
 
 def draw_card(deck_id, player_num, player_hand):
@@ -133,26 +135,15 @@ def shuffle_deck(deck_id):
     return deck_cut
 
 def play_game():
-    # initialize dictionary to hold players and their cards
-    game = {}
-
-    # initialize player number variable
-    pnum = 0
-
-
+    """
+    main function to play Blackjack
+    """
     # shuffle a new deck of cards
-    deck_id, numplayers, bank = new_game()
+    deck_id, deck_cut, numplayers, bank = new_game()
 
-    playerhand = []    
-
-    game[1] = draw_card(deck_id, pnum, playerhand)
-
-    game[1] = draw_card(deck_id, pnum, playerhand)
-
-    shuffle_deck(deck_id)
-
-    
-    game[1] = draw_card(deck_id, pnum, playerhand)
+    print(deck_cut)
+    print(numplayers)
+    print(bank)
 
 #    # draw cards for each player
 #    for i in range(int(numplayers)):
