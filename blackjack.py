@@ -84,37 +84,23 @@ def new_game():
     return deck_id, deck_cut, numplayers, bank
 
 
-def draw_card(deck_id, player_num, player_hand):
+def draw_card(deck_id):
     """
     function to draw cards
     """
-    # init list of player's cards
-    pnumcards = []
-
     # URL to draw cards from deck
     url = "https://deckofcardsapi.com/api/deck/" + deck_id + "/draw/"
 
     # send GET request
     draw = requests.request("GET", url).json()
 
-    # print the number and suit of each card drawn
-    for card in draw["cards"]:  # parse HTTP response;
-        print(
-            "Player #"
-            + str(player_num)
-            + " drew the "
-            + card["value"]
-            + " of "
-            + card["suit"]
-            + "!"
-        )
-        # Add card code to list of all cards drawn
-        pnumcards.append(card["code"])
+    # extract card value
+    card = draw['cards'][0]['code'][0]
 
-    # print the number of remaining cards in the deck
-    print(f"\nThere are {str(draw['remaining'])} cards remaining in the deck.\n")
+    # extract remaining cards in the deck
+    remaining = draw['remaining']
 
-    return player_hand
+    return card, remaining
 
 
 def shuffle_deck(deck_id):
@@ -145,19 +131,12 @@ def play_game():
     print(numplayers)
     print(bank)
 
-
-#    # draw cards for each player
-#    for i in range(int(numplayers)):
-#        pnum += 1
-#        game[pnum] = draw_cards(numcards, deck_id, pnum)
-#
-#    # print out the cards in play for each player
-#    print("The following cards are in play:")
-#    for k, v in game.items():
-#        hand = ""
-#        for i in v:
-#            hand = hand + i + " "
-#        print("Player #" + str(k), "=>", hand)
+    cont = "y"
+    while cont.lower() == "y":
+        card, remaining = draw_card(deck_id)
+        print(card)
+        print(remaining)
+        cont = input("Draw another card? y/n\n")
 
 
 if __name__ == "__main__":
