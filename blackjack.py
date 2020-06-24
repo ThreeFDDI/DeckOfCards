@@ -33,12 +33,14 @@ TODO    Player turn
 
 def new_game():
     """
-    function to create a new deck and return the deck_id
+    Function to create a new deck and return the deck_id, 
+    determine the number of players and the number of decks,
+    and allocate the starting bank for each player.
     """
 
     print("\nLet's play some Blackjack!")
     # Prompt user and set variable for number of players
-    numplayers = 3  # Lazy mode
+    numplayers = 5  # Lazy mode
     # numplayers = input("\nHow many players will there be: ")
 
     # Prompt user and set variable for number of decks to shuffle
@@ -64,6 +66,18 @@ def new_game():
 
     # Print deck id
     print(f"\nNew game starting with deck id: {deck_id}\n")
+
+
+    game = {}
+    
+    for player in range(numplayers):
+        player += 1
+        game[f"P{player}"] = {"bank": 100}
+
+    pprint(game)
+
+
+
 
     return deck_id, numplayers
 
