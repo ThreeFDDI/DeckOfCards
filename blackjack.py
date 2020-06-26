@@ -43,7 +43,7 @@ def new_game():
 
     print("\nLet's play some Blackjack!")
     # Prompt user and set variable for number of players
-    numplayers = 3  # Lazy mode
+    num_of_players = 3  # Lazy mode
     # numplayers = input("\nHow many players will there be: ")
 
     # Prompt user and set variable for number of decks to shuffle
@@ -74,18 +74,18 @@ def new_game():
     bank = {}
 
     # set starting bank for each player
-    for player in range(numplayers):
+    for player in range(num_of_players):
         player += 1
         bank[f"P{player}"] = 100
 
     # set and print player number
-    player = f"P{random.randint(1, numplayers)}"
-    print(f"You are player #{player[1]}\n")
+    player_num = f"P{random.randint(1, num_of_players)}"
+    print(f"You are player #{player_num[1]}\n")
 
     # set deck lower limit before reshuffle
     deck_cut = random.randint(40, 75)
 
-    return deck_id, deck_cut, numplayers, player, bank
+    return deck_id, deck_cut, num_of_players, player_num, bank
 
 
 def draw_card(deck_id):
@@ -129,10 +129,10 @@ def play_game():
     main function to play Blackjack
     """
     # shuffle a new deck of cards
-    deck_id, deck_cut, numplayers, player, bank = new_game()
+    deck_id, deck_cut, num_of_players, player_num, bank = new_game()
 
     print(deck_cut)
-    print(numplayers)
+    print(num_of_players)
     print(bank)
 
     cont = "y"
