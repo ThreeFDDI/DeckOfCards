@@ -124,6 +124,12 @@ def shuffle_deck(deck_id):
     return deck_cut
 
 
+def the_deal(deck_id, num_of_players, player_num, bank):
+    """
+    Round deal 2 cards to each player
+    """
+
+
 def play_game():
     """
     main function to play Blackjack
